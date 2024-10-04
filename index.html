@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+ <html lang="hr"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pozadina DNK</title>
+    <style>
+        body {
+            background-image: url('https://wallup.net/wp-content/uploads/2018/09/30/898654-medical-biology-detail-medicine-psychedelic-science-abstract-abstraction-chemistry-genetics.jpg');
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        canvas { position: absolute; top: 0; left: 0; z-index: -1; }
+        #hromozom1, #hromozom2 {
+            position: absolute; top: 20px; width: 5%; cursor: pointer;
+        }
+        #hromozom1 { left: 20px; }
+        #hromozom2 { left: 8%; }
+        .words {
+            display: none; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background: rgba(0, 0, 0, 0.8);
+            color: white; 
+            padding: 10px; 
+            border-radius: 8px; 
+            z-index: 10; 
+            text-align: left;
+            min-width: 220px;
+            width: 400px;
+            height: auto;
+            overflow: auto;
+        }
+        h2 {
+            font-size: 20px; 
+            margin: 5px 0; 
+            cursor: pointer; 
+        }
+        .spacer {
+            margin: 40px 0; /* Ovdje možeš promijeniti visinu razmaka */
+        }
+        .closeBtn {
+            margin-top: 10px; 
+            padding: 10px 30px; 
+            background: #0000FF; 
+            border: none; 
+            border-radius: 5px; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 16px; 
+        }
+        .detail {
+            display: none; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: #000; /* Crna boja pozadine */
+            color: white; 
+            padding: 40px; /* Povećano polje */
+            border-radius: 12px; 
+            z-index: 20; 
+            width:300px; /* Povećana širina */
+            height: 200px; /* Povećana visina */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img id="hromozom1" src="hromozom1.png" alt="Hromozom 1">
+    <img id="hromozom2" src="hromozom2.png" alt="Hromozom 2">
+    
+    <div id="words1" class="words">
+        <img src="genotip1.png" alt="Slika" style="width: 43px; height: auto; float: left; margin-right: 10px;">
+        <h2 id="eds">EDS VI</h2>
+        <h2 id="rh">RH</h2>
+        <h2 id="cmt2">CMT 2</h2>
+        <h2 id="mcad">MCAD</h2>
+        <h2 id="pxmp1">PXMP 1</h2>
+        
+        <!-- Razmak između PXMP 1 i CMT 18 -->
+        <h2 class="spacer"></h2>
+        
+        <h2 id="cmt18">CMT 18</h2>
+        <h2 id="f5">F5</h2>
+        <h2 id="atIII">AT III</h2>
+        <h2 id="ncf2">NCF 2</h2>
+        <h2 id="cmh2">CMH2</h2>
+        <h2 id="ush2">USH2</h2>
+        <h2 id="vws">VWS</h2>
+        <button id="closeWordsBtn" class="closeBtn">Zatvori</button>
+    </div>
+
+    <!-- Dodani div za hromozom2 -->
+    <div id="words2" class="words">
+        <img src="genotip2.png" alt="Slika" style="width: 43px; height: auto; float: left; margin-right: 10px;">
+        <h2 id="acth">ACTH</h2>
+        <h2 id="apob">APOB</h2>
+        <h2 id="msh2">MSH2</h2>
+        <h2 id="igkc">IGKC</h2>
+        <h2 id="proc">PROC</h2>
+        <h2 id="col3a1">COL3A1</h2>
+        <h2 id="ws1">WS1</h2>
+        <button id="closeWords2Btn" class="closeBtn">Zatvori</button>
+    </div>
+
+    <!-- Polja za detalje -->
+    <div id="detailEDS" class="detail">
+        <h2>Više informacija o EDS VI</h2>
+        <p>Ehlers-Danlosov sindrom tip VI</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailRH" class="detail">
+        <h2>Više informacija o RH</h2>
+        <p>Rhesus null bolest, Rhesus</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailCMT2" class="detail">
+        <h2>Više informacija o CMT 2</h2>
+        <p>Charcot-Marie-Toothova bolest tip 2</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailMCAD" class="detail">
+        <h2>Više informacija o MCAD</h2>
+        <p>Koenzim A dehidrogenaza srednji lanac</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailPXMP1" class="detail">
+        <h2>Više informacija o PXMP 1</h2>
+        <p>Zellwegerov sindrom tip 2</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailCMT18" class="detail">
+        <h2>Više informacija o CMT 18</h2>
+        <p>Charcot-Marie-Toothova bolest tip 1B</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailF5" class="detail">
+        <h2>Više informacija o F5</h2>
+        <p>Koagulacioni protein V</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailATIII" class="detail">
+        <h2>Više informacija o AT III</h2>
+        <p>Antitrombin III</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailNCF2" class="detail">
+        <h2>Više informacija o NCF 2</h2>
+        <p>Hronična granulomatozna bolest deficiencija neutrofilnog citostol faktora</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailCMH2" class="detail">
+        <h2>Više informacija o CMH2</h2>
+        <p>Hipertrofična opstruktivna kardiomipatija tip 2</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailUSH2" class="detail">
+        <h2>Više informacija o USH2</h2>
+        <p>Usher sindrom tip I</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailVWS" class="detail">
+        <h2>Više informacija o VWS</h2>
+        <p>Van der Woudeov sindrom</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    
+    <!-- Dodaj detalje za hromozom 2 -->
+    <div id="detailACTH" class="detail">
+        <h2>Više informacija o ACTH</h2>
+        <p>Deficit adrenokortikotropnog hormona</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailAPOB" class="detail">
+        <h2>Više informacija o APOB</h2>
+        <p>Apolipoprotein B</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailMSH2" class="detail">
+        <h2>Više informacija o MSH2</h2>
+        <p>Hereditarni nepolipozni kolorektalni kancer tip 1</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    <div id="detailIGKC" class="detail">
+        <h2>Više informacija o IGKC</h2>
+        <p>Imunoglobulinski k laki lanac</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+     
+
+    <div id="detailPROC" class="detail">
+        <h2>Više informacija o PROC</h2>
+        <p>Protein C,poremećaj koagulacije</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+      
+
+    <div id="detailCOL3A1" class="detail">
+        <h2>Više informacija o COL3A1</h2>
+        <p>Kolagen tip III,a1-lanac Ehlers-Danlosov sindrom tip IV</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+    
+    <div id="detailWS1" class="detail">
+        <h2>Više informacija o WS1</h2>
+        <p>Waardenburgov sindrom tip I</p>
+        <button class="closeBtn">Zatvori</button>
+    </div>
+
+    <script>
+        const hromozom1 = document.getElementById('hromozom1');
+        const hromozom2 = document.getElementById('hromozom2');
+        const words1 = document.getElementById('words1');
+        const words2 = document.getElementById('words2');
+        const closeBtns = document.querySelectorAll('.closeBtn');
+        const details = document.querySelectorAll('.detail');
+        const closeWordsBtn = document.getElementById('closeWordsBtn');
+        const closeWords2Btn = document.getElementById('closeWords2Btn');
+
+        hromozom1.addEventListener('click', () => {
+            words1.style.display = 'block';
+            words2.style.display = 'none'; // Sakrij reči za hromozom2
+        });
+
+        hromozom2.addEventListener('click', () => {
+            words2.style.display = 'block';
+            words1.style.display = 'none'; // Sakrij reči za hromozom1
+        });
+
+        closeWordsBtn.addEventListener('click', () => {
+            words1.style.display = 'none'; // Zatvori polje sa slikom i rečima
+        });
+
+        closeWords2Btn.addEventListener('click', () => {
+            words2.style.display = 'none'; // Zatvori polje sa slikom i rečima za hromozom2
+        });
+
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                details.forEach(detail => detail.style.display = 'none'); // Zatvori sve detalje
+            });
+        });
+
+        const detailsMap = {
+            eds: 'detailEDS',
+            rh: 'detailRH',
+            cmt2: 'detailCMT2',
+            mcad: 'detailMCAD',
+            pxmp1: 'detailPXMP1',
+            cmt18: 'detailCMT18',
+            f5: 'detailF5',
+            atIII: 'detailATIII',
+            ncf2: 'detailNCF2',
+            cmh2: 'detailCMH2',
+            ush2: 'detailUSH2',
+            vws: 'detailVWS',
+            acth: 'detailACTH',
+            apob: 'detailAPOB',
+            msh2: 'detailMSH2',
+            igkc: 'detailIGKC',
+            proc: 'detailPROC',
+            col3a1: 'detailCOL3A1',
+            ws1: 'detailWS1'
+        };
+
+        Object.keys(detailsMap).forEach(key => {
+            const wordElement = document.getElementById(key);
+            if (wordElement) {
+                wordElement.addEventListener('click', () => {
+                    details.forEach(detail => detail.style.display = 'none'); // Sakrij sve detalje
+                    document.getElementById(detailsMap[key]).style.display = 'block'; // Prikaži odabrani detalj
+                });
+            }
+        });
+    </script>
+</body>
+</html>
